@@ -161,8 +161,8 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
     var date2 = new Date(year,month,day + ((monthTick + 1) * rentalLength));
     descriptionWithDuration = `
       ${dataObject.description} - 
-      ${date1.getFullYear()}/${pad(date1.getMonth(),2)}/${pad(date1.getDate(),2)} - 
-      ${date2.getFullYear()}/${pad(date2.getMonth(),2)}/${pad(date2.getDate(),2)}`
+      ${date1.getFullYear()}/${pad(date1.getMonth() + 1,2)}/${pad(date1.getDate(),2)} - 
+      ${date2.getFullYear()}/${pad(date2.getMonth() + 1,2)}/${pad(date2.getDate(),2)}`
   } else descriptionWithDuration = dataObject.description
 
   row.insertCell(0)
