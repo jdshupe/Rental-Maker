@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="src/css/main.css">
+
+  <script src="src/js/jquery.js"></script>
+
+  <title>Create New Rental</title>
+</head>
+<body>
+  <div id="form">
+    <form action="post">
+      <table id="rental_form_table">
+        <tbody>
+          <tr>
+            <td><label for="job_num">Job Number</label></td>
+            <td><input type="text" name="Job Number" id="job_num"></td>
+          </tr>
+
+          <tr class="rep" id="rep_charge_row_1">
+            <td><label for="rep_charge_1">Repeatable Charges</label></td>
+            <td>
+              <select class="rep description" name="Repeatable Charge 1" id="rep_charge_1">
+              </select>
+            </td>
+            <td>
+              <input type="number" name="Repeatable Charge 1 Price" id="rep_charge_1_price" placeholder="Price">
+            </td>
+            <td>
+              <button type="button" onclick="addRentalRow('repeatable')">Add Row</button>
+            </td>
+          </tr>
+
+          <tr class="one_time" id="one_time_charge_row_1">
+            <td><label for="one_time_charge_1">One Time Charges</label></td>
+            <td>
+              <select class="one_time price" name="One Time Charge 1" id="one_time_charge_1">
+              </select>
+            </td>
+            <td>
+              <input type="number" name="One Time Charge 1 Price" id="one_time_charge_1_price" placeholder="Price">
+            </td>
+            <td>
+              <button type="button" onclick="addRentalRow('single')">Add Row</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="start_date">Start Date</label></td>
+            <td><input type="date" name="Start Date" id="start_date"></td>
+          </tr>
+          <tr>
+            <td><label for="duration">Duration</label></td>
+            <td><input type="number" name="Duration" id="duration"></td>
+          </tr>
+          <tr>
+            <td><label for="rent_length">Rental Length</label></td>
+            <td>
+              <label for="1">1</label>
+              <input type="radio" name="rental length" id="1" value="1">
+              <label for="7">7</label>
+              <input type="radio" name="rental length" id="7" value="7">
+              <label for="28">28</label>
+              <input type="radio" name="rental length" id="28" value="28">
+              <label for="30">30</label>
+              <input type="radio" name="rental length" id="30" value="30">
+            </td>
+          </tr>          
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <button onclick="createUpload()">Create Rental</button>
+  <table hidden id="rental">
+    <thead>
+      <tr>
+        <td>Item</td>
+        <td>Added Line Type</td>
+        <td>Plant Item?</td>
+        <td>Job</td>
+        <td>Code</td>
+        <td>Description</td>
+        <td>WBS Code</td>
+        <td>Quantity</td>
+        <td>Un</td>
+        <td>Price</td>
+        <td>Per</td>
+        <td>Disc%</td>
+        <td>Merchandise</td>
+        <td>Sales/Use Tax Code</td>
+        <td>Freight</td>
+        <td>pol_fchgControl__1</td>
+        <td>pol_chgovd__1</td>
+        <td>T/X</td>
+        <td>pol_taxovr__1</td>
+        <td>Tax</td>
+        <td>Service Order Number</td>
+        <td>RO_sso_desc</td>
+        <td>RO_slc_name</td>
+        <td>pot_type</td>
+        <td>sso_intref</td>
+        <td>RO_se_orderRowid</td>
+        <td>Type of Work</td>
+        <td>RO_sao_desc</td>
+        <td>sao_intref</td>
+        <td>Job Number</td>
+        <td>RO_pol_job_name</td>
+        <td>Due Date</td>
+        <td>Further Discount %</td>
+        <td>pol_disc3</td>
+        <td>pol_disc4</td>
+        <td>Cost Type</td>
+        <td>Cost Category</td>
+        <td>pol_factor</td>
+        <td>Eligible NPA Purchase with Supplier</td>
+        <td>Eligible Manufacturer</td>
+      </tr>
+    </thead>
+    <tbody id="rental-body">
+
+    </tbody>
+  </table>
+  <script src="src/js/script.js"></script>
+</body>
+</html>

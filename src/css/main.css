@@ -1,0 +1,9 @@
+#rental thead td{
+  border: black 2px solid;
+  margin: 0%;
+}
+
+#rental tbody td {
+  border: gray 1px solid;
+  margin: 0%
+}
