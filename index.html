@@ -20,6 +20,10 @@
             <td><label for="job_num">Job Number</label></td>
             <td><input type="text" name="Job Number" id="job_num"></td>
           </tr>
+          <tr>
+            <td><label for="tax_code">Tax Code</label></td>
+            <td><input type="text" name="Tax Code" id="tax_code"></td>
+          </tr>
 
           <tr class="rep" id="rep_charge_row_1">
             <td><label for="rep_charge_1">Repeatable Charges</label></td>
@@ -29,6 +33,9 @@
             </td>
             <td>
               <input type="number" name="Repeatable Charge 1 Price" id="rep_charge_1_price" placeholder="Price">
+            </td>
+            <td>
+              
             </td>
             <td>
               <button type="button" onclick="addRentalRow('repeatable')">Add Row</button>
@@ -43,6 +50,9 @@
             </td>
             <td>
               <input type="number" name="One Time Charge 1 Price" id="one_time_charge_1_price" placeholder="Price">
+            </td>
+            <td>
+              <button type="button" id="one_time_charge_1_delete" onclick="deleteRow('one_time_charge_row_1')">X</button>
             </td>
             <td>
               <button type="button" onclick="addRentalRow('single')">Add Row</button>
@@ -75,6 +85,7 @@
     </form>
   </div>
   <button onclick="createUpload()">Create Rental</button>
+  <button onclick="selectElementContents(document.getElementById('rental'))">Select Table</button>
   <table hidden id="rental">
     <thead>
       <tr>
