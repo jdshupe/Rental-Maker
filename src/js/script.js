@@ -78,21 +78,18 @@ function addRentalRow(chargeType) {
   var adder;
   var type;
   var description;
-  var indexHelper;
   switch (chargeType) {
     case 'repeatable':
       added_rows_repeatable++;
       adder = added_rows_repeatable;
       type = 'rep';
       description = 'Repeatable';
-      indexHelper = 1;
       break;
     case 'single':
       added_rows_one_time++;
       adder = added_rows_one_time;
       type = 'one_time';
       description = 'One Time';
-      indexHelper = 2;
       break;
     default:
       break;
