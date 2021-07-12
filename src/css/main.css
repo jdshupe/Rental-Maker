@@ -11,3 +11,43 @@
 #rental {
   font-size: x-small;
 }
+
+body {
+  background-color: rgb(26, 26, 26);
+}
+
+div {
+  border: 1px solid whitesmoke;
+  background-color: rgba(255, 255, 255, 0.644);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow-x: auto;
+}
+
+#form {
+  width: max-content;
+}
+
+#select-table {
+  margin-bottom: 10px;
+}
+
+div.search {
+  border-radius: unset;
+  border: black solid 1px;
+  background-color: white;
+  position: absolute;
+  padding: 0%;
+  max-height: 25ch;
+  overflow-y: auto;
+  width: 300px;
+}
+
+.search-option {
+  margin: 2px 5px;
+}
+
+.search-option:hover{
+  background-color: lightcoral;
+}

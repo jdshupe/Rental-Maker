@@ -15,24 +15,24 @@
   <div id="form">
     <form action="post">
       <table id="rental_form_table">
-        <tbody>
+        <tbody >
           <tr>
             <td><label for="job_num">Job Number</label></td>
-            <td><input type="text" name="Job Number" id="job_num"></td>
+            <td><input id="job_num" type="text" name="Job Number"></td>
           </tr>
           <tr>
             <td><label for="tax_code">Tax Code</label></td>
-            <td><input type="text" name="Tax Code" id="tax_code"></td>
+            <td><input id="tax_code" type="text" name="Tax Code"></td>
           </tr>
 
-          <tr class="rep" id="rep_charge_row_1">
+          <tr id="rep_charge_row_1" class="rep">
             <td><label for="rep_charge_1">Repeatable Charges</label></td>
             <td>
-              <select class="rep description" name="Repeatable Charge 1" id="rep_charge_1">
-              </select>
+              <input id="rep_charge_1" type="text" class="rep description" name="Repeatable Charge 1" oninput="searchableSelect(this, true);">
+              <div id="rep_charge_1_search" class="rep search" hidden></div>
             </td>
             <td>
-              <input type="number" name="Repeatable Charge 1 Price" id="rep_charge_1_price" placeholder="Price">
+              <input id="rep_charge_1_price" type="number" name="Repeatable Charge 1 Price" placeholder="Price">
             </td>
             <td>
               
@@ -42,17 +42,17 @@
             </td>
           </tr>
 
-          <tr class="one_time" id="one_time_charge_row_1">
+          <tr id="one_time_charge_row_1" class="one_time">
             <td><label for="one_time_charge_1">One Time Charges</label></td>
             <td>
-              <select class="one_time price" name="One Time Charge 1" id="one_time_charge_1">
-              </select>
+              <input id="one_time_charge_1" type="text" class="one_time description" name="One Time Charge 1" oninput="searchableSelect(this);">
+              <div id="one_time_1_search" class="one_time search" hidden></div>
             </td>
             <td>
-              <input type="number" name="One Time Charge 1 Price" id="one_time_charge_1_price" placeholder="Price">
+              <input id="one_time_charge_1_price" type="number" name="One Time Charge 1 Price" placeholder="Price">
             </td>
             <td>
-              <button type="button" id="one_time_charge_1_delete" onclick="deleteRow('one_time_charge_row_1')">X</button>
+              <button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button>
             </td>
             <td>
               <button type="button" onclick="addRentalRow('single')">Add Row</button>
@@ -61,11 +61,11 @@
 
           <tr>
             <td><label for="start_date">Start Date</label></td>
-            <td><input type="date" name="Start Date" id="start_date"></td>
+            <td><input id="start_date" type="date" name="Start Date"></td>
           </tr>
           <tr>
             <td><label for="duration">Duration</label></td>
-            <td><input type="number" name="Duration" id="duration"></td>
+            <td><input id="duration" type="number" name="Duration"></td>
           </tr>
           <tr>
             <td><label for="rent_length">Rental Length</label></td>
@@ -83,58 +83,65 @@
         </tbody>
       </table>
     </form>
+    <button onclick="createUpload()">Create Rental</button>
+    <button onclick="window.location.reload()">New Rental</button>
   </div>
-  <button onclick="createUpload()">Create Rental</button>
-  <button onclick="selectElementContents(document.getElementById('rental'))">Select Table</button>
-  <table hidden id="rental">
-    <thead>
-      <tr>
-        <td>Item</td>
-        <td>Added Line Type</td>
-        <td>Plant Item?</td>
-        <td>Job</td>
-        <td>Code</td>
-        <td>Description</td>
-        <td>WBS Code</td>
-        <td>Quantity</td>
-        <td>Un</td>
-        <td>Price</td>
-        <td>Per</td>
-        <td>Disc%</td>
-        <td>Merchandise</td>
-        <td>Sales/Use Tax Code</td>
-        <td>Freight</td>
-        <td>pol_fchgControl__1</td>
-        <td>pol_chgovd__1</td>
-        <td>T/X</td>
-        <td>pol_taxovr__1</td>
-        <td>Tax</td>
-        <td>Service Order Number</td>
-        <td>RO_sso_desc</td>
-        <td>RO_slc_name</td>
-        <td>pot_type</td>
-        <td>sso_intref</td>
-        <td>RO_se_orderRowid</td>
-        <td>Type of Work</td>
-        <td>RO_sao_desc</td>
-        <td>sao_intref</td>
-        <td>Job Number</td>
-        <td>RO_pol_job_name</td>
-        <td>Due Date</td>
-        <td>Further Discount %</td>
-        <td>pol_disc3</td>
-        <td>pol_disc4</td>
-        <td>Cost Type</td>
-        <td>Cost Category</td>
-        <td>pol_factor</td>
-        <td>Eligible NPA Purchase with Supplier</td>
-        <td>Eligible Manufacturer</td>
-      </tr>
-    </thead>
-    <tbody id="rental-body">
-
-    </tbody>
-  </table>
+  <div>
+    <button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
+    <div>
+      <table id="rental" hidden>
+        <thead>
+          <tr>
+            <td>Item</td>
+            <td>Added Line Type</td>
+            <td>Plant Item?</td>
+            <td>Job</td>
+            <td>Code</td>
+            <td>Description</td>
+            <td>WBS Code</td>
+            <td>Quantity</td>
+            <td>Un</td>
+            <td>Price</td>
+            <td>Per</td>
+            <td>Disc%</td>
+            <td>Merchandise</td>
+            <td>Sales/Use Tax Code</td>
+            <td>Freight</td>
+            <td>pol_fchgControl__1</td>
+            <td>pol_chgovd__1</td>
+            <td>T/X</td>
+            <td>pol_taxovr__1</td>
+            <td>Tax</td>
+            <td>Service Order Number</td>
+            <td>RO_sso_desc</td>
+            <td>RO_slc_name</td>
+            <td>pot_type</td>
+            <td>sso_intref</td>
+            <td>RO_se_orderRowid</td>
+            <td>Type of Work</td>
+            <td>RO_sao_desc</td>
+            <td>sao_intref</td>
+            <td>Job Number</td>
+            <td>RO_pol_job_name</td>
+            <td>Due Date</td>
+            <td>Further Discount %</td>
+            <td>pol_disc3</td>
+            <td>pol_disc4</td>
+            <td>Cost Type</td>
+            <td>Cost Category</td>
+            <td>pol_factor</td>
+            <td>Eligible NPA Purchase with Supplier</td>
+            <td>Eligible Manufacturer</td>
+          </tr>
+        </thead>
+        <tbody id="rental-body">
+    
+        </tbody>
+      </table>
+    </div>
+  </div>
   <script src="src/js/script.js"></script>
+  <script src="src/js/searchableSelect.js"></script>
+  <script>var mainData = getCodes()</script>
 </body>
 </html>
