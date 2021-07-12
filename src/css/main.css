@@ -46,6 +46,8 @@ div.search {
 
 .search-option {
   margin: 2px 5px;
+  border: unset;
+  padding: 5px;
 }
 
 .search-option:hover{
