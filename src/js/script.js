@@ -50,9 +50,6 @@ function setup_select (element_id, type) {
 }
 
 
-setup_select('rep_charge_1','rep');
-setup_select('one_time_charge_1','one_time');
-
 
 /**
  * Inserts a new Node (newNode) before another node (referenceNode)
@@ -64,9 +61,6 @@ function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-
-var added_rows_repeatable = 1;
-var added_rows_one_time = 1;
 
 
 /**
@@ -130,6 +124,7 @@ function addRentalRow(chargeType) {
 }
 
 
+
 /**
  * Pulls a list of charges on the input form
  *
@@ -148,6 +143,7 @@ function getLines (type) {
   }).get()
   return getLines
 }
+
 
 
 /**
@@ -178,6 +174,7 @@ function createUpload () {
     }
   }
 }
+
 
 
 /**
@@ -221,7 +218,8 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
       ${date2.getFullYear()}/${pad(date2.getMonth() + 1,2)}/${pad(date2.getDate(),2)}`
   } else descriptionWithDuration = dataObject.description
 
-  row.insertCell(0)
+  var holder = row.insertCell(0)
+  holder.innerHTML = `&nbsp;`
   var addedLineType = row.insertCell(1)
   addedLineType.innerHTML = 'C'
   var plantItem = row.insertCell(2)
@@ -283,10 +281,13 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   document.getElementById('rental-body').appendChild(row)
 }
 
+
+
 function deleteRow(id) {
   var row = document.getElementById(id)
   row.remove()
 }
+
 
 
 function selectElementContents(el) {
@@ -307,5 +308,16 @@ function selectElementContents(el) {
       range.moveToElementText(el);
       range.select();
       document.execCommand("copy");
-  }
+  }  
+  document.execCommand("copy");
+}
+
+
+
+var added_rows_repeatable = 1;
+var added_rows_one_time = 1;
+
+function main() {
+  setup_select('rep_charge_1','rep');
+  setup_select('one_time_charge_1','one_time');  
 }
