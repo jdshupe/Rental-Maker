@@ -1,10 +1,10 @@
 #rental thead td{
-  border: black 2px solid;
+  border: #a09f99 2px solid;
   margin: 0%;
 }
 
 #rental tbody td {
-  border: gray 1px solid;
+  border: #a09f99 1px solid;
   margin: 0%
 }
 
@@ -13,16 +13,16 @@
 }
 
 body {
-  background-color: rgb(26, 26, 26);
+  background-color: rgb(61, 61, 61);
+  font-family: Consolas, 'Courier New', monospace;
 }
 
 div {
-  border: 1px solid whitesmoke;
-  background-color: rgba(255, 255, 255, 0.644);
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
   overflow-x: auto;
+  color: #fffeef;
 }
 
 #form {
@@ -45,11 +45,17 @@ div.search {
 }
 
 .search-option {
-  margin: 2px 5px;
   border: unset;
-  padding: 5px;
+  border-radius: unset;
+  padding: 5px 10px;
+  color: black;
+  margin-bottom: unset;
 }
 
 .search-option:hover{
-  background-color: lightcoral;
+  background-color: rgb(172, 172, 172);
+}
+
+input, button, html, body {
+  font-family: Consolas, 'Courier New', monospace;
 }
