@@ -1,15 +1,19 @@
+/**
+ * Returns data from db.json as an array for use
+ *
+ * @returns {*} 
+ */
 function getCodes () {
-  // var url = `file:///resources/app/src/db.json`;
+  /** @type {string} */
+  // var url = `file:///src/db.json`;
+  var url = `file:///resources/app/src/db.json`;
+
   var info = {"Data":{
-    "repeatable": [
-
-    ],
-    "oneTime": [
-
-    ]
+    "repeatable": [],
+    "oneTime": []
   }};
-  var url = `file:///src/db.json`;
 
+  /** @type {*} */
   var request = new XMLHttpRequest();
   request.open('GET', url, true);
 
@@ -33,8 +37,8 @@ function getCodes () {
 /**
  * Inserts a new Node (newNode) before another node (referenceNode)
  *
- * @param {object} newNode - Node to be added
- * @param {object} referenceNode - Node to be inserted before
+ * @param {Object} newNode - Node to be added
+ * @param {Object} referenceNode - Node to be inserted before
  */
 function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -45,11 +49,14 @@ function insertAfter(newNode, referenceNode) {
 /**
  * Add a new line for rental information to the input form
  *
- * @param {*} chargeType
+ * @param {string} chargeType - type of line to be added
  */
 function addRentalRow(chargeType) {
+  /** @type {number} */
   var adder;
+  /** @type {string} */
   var type;
+  /** @type {string} */
   var description;
   switch (chargeType) {
     case 'repeatable':
@@ -75,13 +82,13 @@ function addRentalRow(chargeType) {
     className: `${type}`
   })
 
-  var code_input = document.createElement('input');
-  Object.assign(code_input, {
+  var descriptionInput = document.createElement('input');
+  Object.assign(descriptionInput, {
     id:        `${type}_charge_${adder}`,
     className: `${type} description`,
     name:      `${description} Charge ${adder}`
   })
-  code_input.setAttribute('oninput',`javascript: searchableSelect(this, ${repeatable});`);
+  descriptionInput.setAttribute('oninput',`javascript: searchableSelect(this, ${repeatable});`);
 
   var code_search = document.createElement('div');
   Object.assign(code_search, {
@@ -89,6 +96,15 @@ function addRentalRow(chargeType) {
     className: `${type} search`
   })
   $(code_search).hide()
+
+  var codeInput = document.createElement('input');
+  Object.assign(codeInput, {
+    id:        `${type}_charge_${adder}_code`,
+    className: `${type} code`,
+    name:      `${type} Charge ${adder} Code`,
+    type:      'text'
+  })
+  $(codeInput).hide()
 
   var price_entry = document.createElement('input');
   Object.assign(price_entry, {
@@ -109,8 +125,9 @@ function addRentalRow(chargeType) {
   row.insertCell(0)
 
   var cell1 = row.insertCell(1)
-  cell1.appendChild(code_input)
+  cell1.appendChild(descriptionInput)
   cell1.appendChild(code_search)
+  cell1.appendChild(codeInput)
 
   var cell2 = row.insertCell(2)
   cell2.appendChild(price_entry)
@@ -131,12 +148,11 @@ function addRentalRow(chargeType) {
  */
 function getLines (type) {
   var getLines = $(`tr.${type}`).map(function () {
-    var select = $(this).find('select')
-    var input = $(this).find('input')
+    var description = ($(this).find('.code').val() == 'MISC-E') ? $(this).find('.misc-description').val() : $(this).find('.description').val()
     return {
-      'description': select.children('option:selected').text(),
-      'value': select.val(),
-      'price': input.val()
+      'description': description,
+      'value': $(this).find('.code').val(),
+      'price': $(this).find('.price').val()
     }
   }).get()
   return getLines
@@ -238,43 +254,43 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   price.innerHTML = dataObject.price
   var per = row.insertCell(10)
   per.innerHTML = 'EA'
-  row.insertCell(11)
-  row.insertCell(12)
+  row.insertCell(11).innerHTML = `&nbsp;`
+  row.insertCell(12).innerHTML = `&nbsp;`
   var taxCodeCell = row.insertCell(13)
   taxCodeCell.innerHTML = taxCode
-  row.insertCell(14)
-  row.insertCell(15)
+  row.insertCell(14).innerHTML = `&nbsp;`
+  row.insertCell(15).innerHTML = `&nbsp;`
   var pol_chgovd = row.insertCell(16)
   pol_chgovd.innerHTML = 'no'
   var tx = row.insertCell(17)
   tx.innerHTML = 'no'
   var pol_taxovr = row.insertCell(18)
   pol_taxovr.innerHTML = 'yes'
-  row.insertCell(19)
-  row.insertCell(20)
-  row.insertCell(21)
-  row.insertCell(22)
-  row.insertCell(23)
-  row.insertCell(24)
-  row.insertCell(25)
-  row.insertCell(26)
-  row.insertCell(27)
-  row.insertCell(28)
-  row.insertCell(29)
-  row.insertCell(30)
+  row.insertCell(19).innerHTML = `&nbsp;`
+  row.insertCell(20).innerHTML = `&nbsp;`
+  row.insertCell(21).innerHTML = `&nbsp;`
+  row.insertCell(22).innerHTML = `&nbsp;`
+  row.insertCell(23).innerHTML = `&nbsp;`
+  row.insertCell(24).innerHTML = `&nbsp;`
+  row.insertCell(25).innerHTML = `&nbsp;`
+  row.insertCell(26).innerHTML = `&nbsp;`
+  row.insertCell(27).innerHTML = `&nbsp;`
+  row.insertCell(28).innerHTML = `&nbsp;`
+  row.insertCell(29).innerHTML = `&nbsp;`
+  row.insertCell(30).innerHTML = `&nbsp;`
   var dueDate = row.insertCell(31)
   dueDate.innerHTML = new Date().toLocaleDateString()
-  row.insertCell(32)
-  row.insertCell(33)
-  row.insertCell(34)
+  row.insertCell(32).innerHTML = `&nbsp;`
+  row.insertCell(33).innerHTML = `&nbsp;`
+  row.insertCell(34).innerHTML = `&nbsp;`
   var costType = row.insertCell(35)
   costType.innerHTML = '400E'
   var costCategory = row.insertCell(36)
   costCategory.innerHTML = 'E'
   var polFactor = row.insertCell(37)
   polFactor.innerHTML = 1
-  row.insertCell(38)
-  row.insertCell(39)
+  row.insertCell(38).innerHTML = `&nbsp;`
+  row.insertCell(39).innerHTML = `&nbsp;`
 
   document.getElementById('rental-body').appendChild(row)
 }
@@ -309,7 +325,6 @@ function selectElementContents(el) {
   }
   document.execCommand("copy");
 }
-
 
 
 var added_rows_repeatable = 1;

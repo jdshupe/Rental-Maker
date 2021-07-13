@@ -28,11 +28,12 @@
           <tr id="rep_charge_row_1" class="rep">
             <td><label for="rep_charge_1">Repeatable Charges</label></td>
             <td>
-              <input id="rep_charge_1" type="text" class="rep description" name="Repeatable Charge 1" oninput="searchableSelect(this, true);">
-              <div id="rep_charge_1_search" class="rep search" hidden></div>
+              <input id="rep_charge_1"      type="text" class="rep description" name="Repeatable Charge 1"      oninput="searchableSelect(this, true);">
+              <div   id="rep_charge_1_search"           class="rep search" hidden></div>
+              <input id="rep_charge_1_code" type="text" class="rep code"        name="Repeatable Charge 1 Code" hidden>
             </td>
             <td>
-              <input id="rep_charge_1_price" type="number" name="Repeatable Charge 1 Price" placeholder="Price">
+              <input id="rep_charge_1_price" type="number" class="rep price" name="Repeatable Charge 1 Price" placeholder="Price">
             </td>
             <td>
               
@@ -41,15 +42,16 @@
               <button type="button" onclick="addRentalRow('repeatable')">Add Row</button>
             </td>
           </tr>
-
+          
           <tr id="one_time_charge_row_1" class="one_time">
             <td><label for="one_time_charge_1">One Time Charges</label></td>
             <td>
               <input id="one_time_charge_1" type="text" class="one_time description" name="One Time Charge 1" oninput="searchableSelect(this);">
               <div id="one_time_1_search" class="one_time search" hidden></div>
+              <input id="one_time_charge_1_code" type="text" class="one_time code" name="One Time Charge 1 Code" hidden>
             </td>
             <td>
-              <input id="one_time_charge_1_price" type="number" name="One Time Charge 1 Price" placeholder="Price">
+              <input id="one_time_charge_1_price" type="number" class="one_time price" name="One Time Charge 1 Price" placeholder="Price">
             </td>
             <td>
               <button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button>
@@ -88,7 +90,7 @@
   </div>
   <div>
     <button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
-    <div>
+    <div id="rental-div" class="table">
       <table id="rental" hidden>
         <thead>
           <tr>
@@ -142,6 +144,8 @@
   </div>
   <script src="src/js/script.js"></script>
   <script src="src/js/searchableSelect.js"></script>
-  <script>var mainData = getCodes()</script>
+  <script>
+    var mainData = getCodes();
+  </script>
 </body>
 </html>
