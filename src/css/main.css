@@ -58,4 +58,9 @@ div.search {
 
 input, button, html, body {
   font-family: Consolas, 'Courier New', monospace;
+  margin: 2px;
+}
+
+input.description{
+  width: 95%;
 }
