@@ -5,8 +5,8 @@
  */
 function getCodes () {
   /** @type {string} */
-  var url = `file:///src/db.json`;
-  // var url = `file:///resources/app/src/db.json`;
+  // var url = `file:///src/db.json`;
+  var url = `file:///resources/app/src/db.json`;
 
   var info = {"Data":{
     "repeatable": [],
@@ -120,7 +120,12 @@ function addRentalRow(chargeType) {
   var cell3 = row.insertCell(3)
   cell3.appendChild(deleteButton)
 
-  insertAfter(row, document.getElementById(`${type}_charge_row_${adder - 1}`))
+  if (type == 'one_time' && adder == 1) {
+    insertAfter(row, document.getElementById(`rep_charge_row_${added_rows_repeatable}`))
+    document.getElementById(`${type}_charge_row_${adder}`).children[0].innerHTML = "One Time Charges"
+  } else {
+    insertAfter(row, document.getElementById(`${type}_charge_row_${adder - 1}`))
+  }
   populateDatalist(descriptionInput, repeatable)
 }
 
@@ -253,18 +258,9 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   tx.innerHTML = 'no'
   var pol_taxovr = row.insertCell(18)
   pol_taxovr.innerHTML = 'yes'
-  row.insertCell(19).innerHTML = `&nbsp;`
-  row.insertCell(20).innerHTML = `&nbsp;`
-  row.insertCell(21).innerHTML = `&nbsp;`
-  row.insertCell(22).innerHTML = `&nbsp;`
-  row.insertCell(23).innerHTML = `&nbsp;`
-  row.insertCell(24).innerHTML = `&nbsp;`
-  row.insertCell(25).innerHTML = `&nbsp;`
-  row.insertCell(26).innerHTML = `&nbsp;`
-  row.insertCell(27).innerHTML = `&nbsp;`
-  row.insertCell(28).innerHTML = `&nbsp;`
-  row.insertCell(29).innerHTML = `&nbsp;`
-  row.insertCell(30).innerHTML = `&nbsp;`
+  for (i = 19; i <= 30; i++) {
+    row.insertCell(i).innerHTML = `&nbsp`
+  }
   var dueDate = row.insertCell(31)
   dueDate.innerHTML = new Date().toLocaleDateString()
   row.insertCell(32).innerHTML = `&nbsp;`
@@ -287,6 +283,7 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
 function deleteRow(id) {
   var row = document.getElementById(id)
   row.remove()
+  id.includes("one_time") ? added_rows_one_time-- : added_rows_repeatable--
 }
 
 
