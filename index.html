@@ -23,6 +23,8 @@
           <tr>
             <td><label for="tax_code">Tax Code</label></td>
             <td><input id="tax_code" type="text" name="Tax Code"></td>
+            <td><button type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button></td>
+            <td><button type="button" onclick="addRentalRow('single')">Add One Time Charge</button></td>
           </tr>
 
           <!-- Table Rows for Repeatable Charges -->
@@ -33,8 +35,6 @@
               <datalist id="rep_charge_1_options"></datalist>
             </td>
             <td><input id="rep_charge_1_price" type="number" class="rep price" name="Repeatable Charge 1 Price" placeholder="Price"></td>
-            <td></td>
-            <td><button type="button" onclick="addRentalRow('repeatable')">Add Row</button></td>
           </tr>
 
           <!-- Table Rows for One Time Charges -->
@@ -46,7 +46,6 @@
             </td>
             <td><input id="one_time_charge_1_price" type="number" class="one_time price" name="One Time Charge 1 Price" placeholder="Price"></td>
             <td><button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button></td>
-            <td><button type="button" onclick="addRentalRow('single')">Add Row</button></td>
           </tr>
 
           <tr>
